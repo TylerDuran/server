@@ -6,7 +6,8 @@
 const Joke = require("../models/jokes.model")
 
 // ------ Make all the CRUD -----------
-// READ ALL
+
+// READ ALL ---------------------------
 module.exports.findAllJokes = (req, res) => {
     // Use the model to execute a query 
     Joke.find()
@@ -17,7 +18,7 @@ module.exports.findAllJokes = (req, res) => {
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-// CREATE
+// CREATE ------------------------------
 module.exports.createNewJoke = (req, res) => {
     // This process is the same as inserting like db.jokes.insert({ setup: 'Where do programmers hang out?', punchline: 'The Foo Bar' })
     // console.log(req.body)
@@ -27,7 +28,7 @@ module.exports.createNewJoke = (req, res) => {
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-// READ ONE
+// READ ONE ---------------------------
 module.exports.findOneJoke = (req, res) => {
     // /api/jokes/:id
     Joke.findOne({ _id: req.params.id })
@@ -35,7 +36,7 @@ module.exports.findOneJoke = (req, res) => {
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-// UPDATE ONE
+// UPDATE ONE --------------------------
 module.exports.updateExistingJoke = (req, res) => {
     Joke.findOneAndUpdate(
         { _id: req.params.id },
@@ -46,15 +47,14 @@ module.exports.updateExistingJoke = (req, res) => {
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-
-// DELETE ONE
+// DELETE ONE --------------------------
 module.exports.deleteAnExistingJoke = (req, res) => {
     Joke.deleteOne({ _id: req.params.id })
         .then(result => res.json({ result: result }))
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
 
-// RANDOM ONE
+// RANDOM ONE ---------------------------
 module.exports.findRandomJoke = (req, res) => {
     Joke.find()
     .then(allDaJokes => {
