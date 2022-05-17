@@ -12,7 +12,7 @@ module.exports.findAllJokes = (req, res) => {
     Joke.find()
         .then(allDaJokes => {
             console.log(allDaJokes);
-            res.json(allDaJokes);
+            return res.json(allDaJokes);
         })
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }
@@ -55,3 +55,12 @@ module.exports.deleteAnExistingJoke = (req, res) => {
 }
 
 // RANDOM ONE
+module.exports.findRandomJoke = (req, res) => {
+    Joke.find()
+    .then(allDaJokes => {
+        console.log(allDaJokes);
+        let randomInt = Math.floor(Math.random() * allDaJokes.length);
+        return res.json(allDaJokes[randomInt]);
+    })
+    .catch(err => res.json({ message: 'Something went wrong', error: err }));
+}
